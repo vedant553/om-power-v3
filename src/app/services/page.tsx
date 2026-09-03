@@ -22,7 +22,7 @@ const services = [
     fullName: "Energy Auditing Services",
     icon: ClipboardCheck,
     accentColor: "#0D9488",
-    image: "",
+    image: "/services/Energy Auditing Services.png",
     imageAlt: "",
     description:
       "An energy audit is a systematic examination of how energy flows through your facility — identifying where energy is wasted and where savings are possible. We conduct both Level 1 (walk-through) and Level 2 (detailed) energy audits for industrial plants, commercial buildings, and healthcare facilities.",
@@ -48,7 +48,7 @@ const services = [
     icon: AlertTriangle,
     accentColor: "#F59E0B",
     // TODO: Replace with actual client or royalty-free power quality/harmonics image
-    image: "/services/power-quality.jpg",
+    image: "/services/Power Quality Audit & Harmonics Measurement.png",
     imageAlt: "Power quality audit and harmonics measurement",
     description:
       "Poor power quality — manifesting as voltage fluctuations, harmonics, transients, and unbalance — causes mysterious equipment trips, premature motor and transformer failures, and overheating in cables and panels. We measure, diagnose and recommend solutions.",
@@ -75,7 +75,7 @@ const services = [
     icon: FileText,
     accentColor: "#0D9488",
     // TODO: Replace with actual client or royalty-free electrical safety audit image
-    image: "/services/safety-audit.png",
+    image: "/services/Electrical Safety Audit.png",
     imageAlt: "Electrical safety audit by Om Power Consultant",
     description:
       "Electrical installations degrade over time — insulation ages, connections loosen, earthing deteriorates. An electrical safety audit systematically inspects your entire electrical installation against IS/NBC safety standards, identifying life-safety risks and compliance gaps.",
@@ -102,7 +102,7 @@ const services = [
     icon: Thermometer,
     accentColor: "#F59E0B",
     // TODO: Replace with actual client or royalty-free thermographic testing image
-    image: "/services/thermographic.webp",
+    image: "/services/Electrical Testing & Thermographic (Thermal Imaging) Inspection.png",
     imageAlt: "Thermographic testing and thermal imaging inspection",
     description:
       "Thermographic (thermal imaging / infrared) inspection is one of the most powerful non-invasive tools for predictive maintenance. It detects abnormal heat signatures in electrical equipment — loose connections, overloaded circuits, failing components — before they cause a breakdown or fire.",
@@ -128,7 +128,7 @@ const services = [
     fullName: "Hazardous Area Classification & Assessment",
     icon: ShieldAlert,
     accentColor: "#0D9488",
-    image: "/services/hazardous-area-classification.png",
+    image: "/services/Hazardous Area Classification & Assessment.png",
     imageAlt: "Hazardous area classification and assessment",
     description:
       "In facilities handling flammable gases, vapors, or combustible dust, the risk of ignition is ever-present. Hazardous Area Classification (HAC) is the systematic evaluation of your facility to identify and zone areas where explosive atmospheres may occur, ensuring the correct selection and installation of explosion-proof (Ex) electrical equipment.",
@@ -154,7 +154,7 @@ const services = [
     fullName: "Arc-Flash Study & Risk Assessment",
     icon: Zap,
     accentColor: "#F59E0B",
-    image: "/services/arc-flash-study.jpg",
+    image: "/services/Arc-Flash Study & Risk Assessment.png",
     imageAlt: "Arc-flash study and risk assessment",
     description:
       "An arc flash is an extremely dangerous electrical explosion that can cause severe burns, blindness, and fatal injuries. An Arc-Flash Study calculates the incident thermal energy at specific points in your electrical distribution system, helping you implement proper PPE requirements and safe work practices.",
@@ -180,7 +180,7 @@ const services = [
     fullName: "Lightning Arrester & Earthing Risk Assessment",
     icon: CloudLightning,
     accentColor: "#0D9488",
-    image: "/services/lightning-risk-assessment.jpg",
+    image: "/services/Lightning Arrester & Earthing Risk Assessment.png",
     imageAlt: "Lightning arrester and earthing risk assessment",
     description:
       "Lightning strikes are a leading cause of equipment damage, data loss, and fire hazards in industrial facilities. A comprehensive Lightning Risk Assessment evaluates your building's susceptibility to direct and indirect strikes, ensuring your Lightning Protection System (LPS) and earthing are robust enough to safely dissipate this massive surge of energy.",
@@ -206,7 +206,7 @@ const services = [
     fullName: "Annual Maintenance Contracts (AMC) & Power Factor Optimization",
     icon: Wrench,
     accentColor: "#F59E0B",
-    image: "",
+    image: "/services/Annual Maintenance Contracts (AMC) & Power Factor Optimization.png",
     imageAlt: "",
     description:
       "Maintaining optimal power factor is crucial for avoiding penalties and reducing electricity bills. Our AMC services go beyond standard maintenance by providing real-time monitoring of instantaneous power factor based on the import and export of reactive power, ensuring your systems consistently operate at peak efficiency.",
@@ -232,7 +232,7 @@ const services = [
     fullName: "Electricity Bill Analysis & Tariff Optimization",
     icon: Receipt,
     accentColor: "#0D9488",
-    image: "",
+    image: "/services/Electricity Bill Analysis & Tariff Optimization.png",
     imageAlt: "",
     description:
       "Electricity bills are often riddled with erroneous charges, incorrect demand calculations, and missed rebates. We perform a forensic analysis of your electricity bills against your actual consumption patterns to identify billing errors, optimize your tariff structure, and uncover hidden areas of zone-wise wastage.",
@@ -258,7 +258,7 @@ const services = [
     fullName: "Walkthrough & Detailed Energy Audits",
     icon: Search,
     accentColor: "#F59E0B",
-    image: "/services/walkthrough-detailed-audit.jpg",
+    image: "/services/Walkthrough & Detailed Energy Audits.png",
     imageAlt: "Walkthrough and detailed energy audits",
     description:
       "We offer tiered auditing solutions tailored to your specific requirements. Our initial Walkthrough Audit provides a rapid, on-site overview of where energy is being wasted, while our Detailed Energy Audit provides a comprehensive, data-driven roadmap for deep energy conservation and capital planning.",

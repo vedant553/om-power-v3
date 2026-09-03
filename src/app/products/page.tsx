@@ -23,7 +23,7 @@ const products = [
     badge: "Panel Manufacturing",
     badgeColor: "#0A1628",
     // TODO: Replace with actual client photo of LT Panel
-    image: "",
+    image: "/products/Low Tension (LT) Distribution Panel.png",
     imageAlt: "",
     description:
       "Low Tension panels are the backbone of power distribution in industrial and commercial facilities. We design and fabricate custom LT panels built to IS standards, engineered for your specific load requirements and facility layout.",
@@ -51,7 +51,7 @@ const products = [
     badge: "Panel Manufacturing",
     badgeColor: "#0A1628",
     // TODO: Replace with actual client photo of HT Panel
-    image: "",
+    image: "/products/High Tension (HT) Switchgear Panel.png",
     imageAlt: "",
     description:
       "High Tension panels handle power at 11 kV and above — critical for industrial facilities with their own HT connections. Our HT switchgear panels are engineered for reliability, safety, and seamless integration with utility supply points.",
@@ -79,7 +79,7 @@ const products = [
     badge: "Panel Manufacturing",
     badgeColor: "#0A1628",
     // TODO: Replace with actual client photo of VFD Panel
-    image: "",
+    image: "/products/Variable Frequency Drive (VFD) Panel.png",
     imageAlt: "",
     description:
       "VFD panels provide precise motor speed control, dramatically reducing energy consumption and mechanical stress. Whether for pumps, fans, compressors, or conveyors — our VFD panels are custom-built and pre-wired for fast site commissioning.",
@@ -107,7 +107,7 @@ const products = [
     badge: "Panel Manufacturing",
     badgeColor: "#0A1628",
     // TODO: Replace with actual client photo of APFC Panel
-    image: "",
+    image: "/products/Control & Automatic Power Factor Correction (APFC) Panel.png",
     imageAlt: "",
     description:
       "APFC panels automatically maintain your facility's power factor within the utility-required range, eliminating penalty charges on your electricity bill. Our control panels also serve as motor control centers and automation panels for industrial processes.",
@@ -138,7 +138,7 @@ const products = [
     fullName: "Thyristor Switching Panel",
     badge: "Panel Manufacturing",
     badgeColor: "#0A1628",
-    image: "",
+    image: "/products/Thyristor Switching Panel.png",
     imageAlt: "",
     description:
       "Thyristor switching panels are engineered for ultra-fast, zero-lag reactive power compensation. Unlike standard contactor-based APFC systems, thyristor switching provides transient-free switching, making them ideal for facilities with rapidly fluctuating loads, sensitive electronic equipment, and welding or crane operations where capacitor switching must be instantaneous and silent.",
@@ -168,7 +168,7 @@ const products = [
     fullName: "Static Var Generator (SVG) Hybrid System Panel",
     badge: "Panel Manufacturing",
     badgeColor: "#0A1628",
-    image: "",
+    image: "/products/Static Var Generator (SVG) Hybrid System Panel.png",
     imageAlt: "",
     description:
       "Static Var Generators (SVGs) are state-of-the-art, active power electronics-based solutions that provide dynamic, stepless reactive power compensation. Unlike conventional capacitors, SVGs inject leading or lagging current instantaneously to correct power factor and stabilize voltage, even in systems with severe harmonic distortion and unbalanced loads. Our hybrid panels combine APFC capacitor banks with SVG modules for maximum efficiency and cost-effectiveness.",
@@ -198,7 +198,7 @@ const products = [
     fullName: "MSEDCL Liaisoning & Regulatory Approvals",
     badge: "Regulatory Services",
     badgeColor: "#0D9488",
-    image: "",
+    image: "/products/MSEDCL Liaisoning & Regulatory Approvals.png",
     imageAlt: "",
     description:
       "Navigating the complex procedures of the Maharashtra State Electricity Distribution Company Limited (MSEDCL) requires deep technical knowledge and precise documentation. We provide end-to-end liaisoning services to secure new connections, load enhancements, and statutory approvals — ensuring your facility is energized on time and fully compliant with utility regulations.",
