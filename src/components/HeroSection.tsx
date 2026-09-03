@@ -7,6 +7,9 @@ import { useEffect, useRef, useState } from "react";
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [voltage, setVoltage] = useState(415);
+  const [pf, setPf] = useState(0.98);
+  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
   useEffect(() => {
     const el = heroRef.current;
@@ -27,9 +30,29 @@ export default function HeroSection() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     el.addEventListener("mousemove", handleMouse, { passive: true });
+    
+    // Live Data Simulation
+    const dataInterval = setInterval(() => {
+      setVoltage((prev) => {
+        const change = Math.floor(Math.random() * 3) - 1; // -1, 0, or 1
+        let next = prev + change;
+        if (next < 412) next = 412;
+        if (next > 418) next = 418;
+        return next;
+      });
+
+      setPf((prev) => {
+        const vals = [0.97, 0.98, 0.99];
+        const currentIdx = vals.indexOf(prev);
+        const nextIdx = (currentIdx + (Math.random() > 0.5 ? 1 : -1) + vals.length) % vals.length;
+        return vals[nextIdx];
+      });
+    }, 2500);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       el.removeEventListener("mousemove", handleMouse);
+      clearInterval(dataInterval);
     };
   }, []);
 
@@ -39,6 +62,37 @@ export default function HeroSection() {
       className="relative min-h-screen flex items-center overflow-hidden bg-ind-dark"
       aria-labelledby="hero-heading"
     >
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes energyFlow {
+          to { stroke-dashoffset: -40; }
+        }
+        .animate-energy-flow {
+          animation: energyFlow 1.5s linear infinite;
+        }
+        .panel-tooltip {
+          opacity: 0;
+          transform: translate(-50%, calc(-50% + 10px));
+          transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+          pointer-events: none;
+        }
+        .panel-tooltip.visible {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+        .interactive-element {
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .interactive-element:hover {
+          filter: drop-shadow(0 0 8px rgba(79, 209, 197, 0.6));
+        }
+        .glass-panel {
+          background: rgba(10, 22, 40, 0.85);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(79, 209, 197, 0.3);
+        }
+      `}} />
+
       {/* Blueprint grid background */}
       <div className="absolute inset-0 blueprint-grid opacity-40" aria-hidden="true" />
 
@@ -174,32 +228,79 @@ export default function HeroSection() {
                     backgroundSize: "48px 48px",
                   }} />
 
-                  {/* Panel components — stylized schematic */}
+                  {/* Enhanced Panel components — stylized schematic */}
                   <svg className="absolute inset-0 w-full h-full p-6" viewBox="0 0 300 375" fill="none">
+                    <defs>
+                      <filter id="neon-glow-yellow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                      </filter>
+                      <filter id="neon-glow-teal" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                      </filter>
+                    </defs>
+
                     {/* Main busbar horizontal */}
                     <line x1="40" y1="60" x2="260" y2="60" stroke="rgba(234,179,8,0.5)" strokeWidth="3" strokeLinecap="round" />
                     <line x1="40" y1="75" x2="260" y2="75" stroke="rgba(234,179,8,0.3)" strokeWidth="2" strokeLinecap="round" />
                     <line x1="40" y1="87" x2="260" y2="87" stroke="rgba(79,209,197,0.3)" strokeWidth="1.5" strokeLinecap="round" />
+                    
+                    {/* Animated energy flow on busbar */}
+                    <line x1="40" y1="60" x2="260" y2="60" stroke="rgba(234,179,8,0.8)" strokeWidth="2" strokeDasharray="10 30" strokeLinecap="round" className="animate-energy-flow" />
 
-                    {/* Vertical feeders */}
-                    {[110, 155, 200, 245, 290].map((x, i) => (
-                      <g key={i}>
-                        <line x1={x} y1="75" x2={x} y2={String(130 + i * 15)} stroke={i % 2 === 0 ? "rgba(234,179,8,0.3)" : "rgba(79,209,197,0.25)"} strokeWidth="1.5" />
-                        <rect x={String(x - 10)} y={String(125 + i * 15)} width="20" height="24" rx="2" stroke={i % 2 === 0 ? "rgba(234,179,8,0.4)" : "rgba(79,209,197,0.35)"} strokeWidth="1" fill={i % 2 === 0 ? "rgba(234,179,8,0.05)" : "rgba(79,209,197,0.05)"} />
-                        <circle cx={x} cy={String(137 + i * 15)} r="3" fill={i < 3 ? "rgba(79,209,197,0.6)" : "rgba(234,179,8,0.4)"} className={i === 0 ? "flicker-accent" : ""} />
-                        <line x1={x} y1={String(149 + i * 15)} x2={x} y2={String(165 + i * 15)} stroke="rgba(226,228,232,0.1)" strokeWidth="1" strokeDasharray="2 2" />
-                      </g>
-                    ))}
+                    {/* Vertical feeders with interactive zones */}
+                    {[110, 155, 200, 245, 290].map((x, i) => {
+                      const isHovered = hoveredNode === `feeder-${i}`;
+                      const strokeColor = i % 2 === 0 ? "234,179,8" : "79,209,197";
+                      const filterUrl = i % 2 === 0 ? "url(#neon-glow-yellow)" : "url(#neon-glow-teal)";
+                      return (
+                        <g 
+                          key={i} 
+                          className="interactive-element"
+                          onMouseEnter={() => setHoveredNode(`feeder-${i}`)}
+                          onMouseLeave={() => setHoveredNode(null)}
+                        >
+                          {/* Invisible larger hit area for hover */}
+                          <rect x={x - 15} y="75" width="30" height="100" fill="transparent" />
+                          
+                          <line x1={x} y1="75" x2={x} y2={String(130 + i * 15)} stroke={`rgba(${strokeColor},${isHovered ? '0.8' : '0.3'})`} strokeWidth="1.5" />
+                          
+                          {/* Animated flow down the feeder, only active on hover */}
+                          {isHovered && (
+                             <line x1={x} y1="75" x2={x} y2={String(130 + i * 15)} stroke={`rgba(${strokeColor},1)`} strokeWidth="2" strokeDasharray="5 15" className="animate-energy-flow" />
+                          )}
+                          
+                          <rect x={String(x - 10)} y={String(125 + i * 15)} width="20" height="24" rx="2" stroke={`rgba(${strokeColor},${isHovered ? '1' : '0.4'})`} strokeWidth="1" fill={`rgba(${strokeColor},${isHovered ? '0.2' : '0.05'})`} filter={isHovered ? filterUrl : ""} />
+                          <circle cx={x} cy={String(137 + i * 15)} r="3" fill={`rgba(${strokeColor},0.8)`} className={i === 0 && !isHovered ? "flicker-accent" : ""} filter={isHovered ? filterUrl : ""} />
+                          <line x1={x} y1={String(149 + i * 15)} x2={x} y2={String(165 + i * 15)} stroke="rgba(226,228,232,0.1)" strokeWidth="1" strokeDasharray="2 2" />
+                        </g>
+                      );
+                    })}
 
-                    {/* Meter section */}
-                    <rect x="60" y="210" width="80" height="50" rx="3" stroke="rgba(226,228,232,0.15)" strokeWidth="1" fill="rgba(226,228,232,0.03)" />
-                    <text x="100" y="232" textAnchor="middle" fill="rgba(79,209,197,0.5)" fontSize="8" fontFamily="var(--font-chakra)" fontWeight="600" letterSpacing="0.1em">METERING</text>
-                    <text x="100" y="248" textAnchor="middle" fill="rgba(234,179,8,0.4)" fontSize="10" fontFamily="var(--font-chakra)" fontWeight="700">415V / 50Hz</text>
+                    {/* Meter section - Interactive */}
+                    <g 
+                      className="interactive-element"
+                      onMouseEnter={() => setHoveredNode('metering')}
+                      onMouseLeave={() => setHoveredNode(null)}
+                    >
+                      <rect x="55" y="205" width="90" height="60" rx="4" fill="transparent" /> {/* Hit area */}
+                      <rect x="60" y="210" width="80" height="50" rx="3" stroke={hoveredNode === 'metering' ? "rgba(79,209,197,0.8)" : "rgba(226,228,232,0.15)"} strokeWidth="1" fill={hoveredNode === 'metering' ? "rgba(79,209,197,0.15)" : "rgba(226,228,232,0.03)"} />
+                      <text x="100" y="232" textAnchor="middle" fill={hoveredNode === 'metering' ? "rgba(79,209,197,1)" : "rgba(79,209,197,0.5)"} fontSize="8" fontFamily="var(--font-chakra)" fontWeight="600" letterSpacing="0.1em" filter={hoveredNode === 'metering' ? "url(#neon-glow-teal)" : ""}>METERING</text>
+                      <text x="100" y="248" textAnchor="middle" fill={hoveredNode === 'metering' ? "rgba(234,179,8,1)" : "rgba(234,179,8,0.4)"} fontSize="10" fontFamily="var(--font-chakra)" fontWeight="700">{voltage}V / 50Hz</text>
+                    </g>
 
-                    {/* APFC section */}
-                    <rect x="160" y="210" width="80" height="50" rx="3" stroke="rgba(234,179,8,0.2)" strokeWidth="1" fill="rgba(234,179,8,0.03)" />
-                    <text x="200" y="232" textAnchor="middle" fill="rgba(234,179,8,0.5)" fontSize="8" fontFamily="var(--font-chakra)" fontWeight="600" letterSpacing="0.1em">APFC</text>
-                    <text x="200" y="248" textAnchor="middle" fill="rgba(79,209,197,0.4)" fontSize="10" fontFamily="var(--font-chakra)" fontWeight="700">PF: 0.98</text>
+                    {/* APFC section - Interactive */}
+                    <g 
+                      className="interactive-element"
+                      onMouseEnter={() => setHoveredNode('apfc')}
+                      onMouseLeave={() => setHoveredNode(null)}
+                    >
+                      <rect x="155" y="205" width="90" height="60" rx="4" fill="transparent" /> {/* Hit area */}
+                      <rect x="160" y="210" width="80" height="50" rx="3" stroke={hoveredNode === 'apfc' ? "rgba(234,179,8,0.8)" : "rgba(234,179,8,0.2)"} strokeWidth="1" fill={hoveredNode === 'apfc' ? "rgba(234,179,8,0.15)" : "rgba(234,179,8,0.03)"} />
+                      <text x="200" y="232" textAnchor="middle" fill={hoveredNode === 'apfc' ? "rgba(234,179,8,1)" : "rgba(234,179,8,0.5)"} fontSize="8" fontFamily="var(--font-chakra)" fontWeight="600" letterSpacing="0.1em" filter={hoveredNode === 'apfc' ? "url(#neon-glow-yellow)" : ""}>APFC</text>
+                      <text x="200" y="248" textAnchor="middle" fill={hoveredNode === 'apfc' ? "rgba(79,209,197,1)" : "rgba(79,209,197,0.4)"} fontSize="10" fontFamily="var(--font-chakra)" fontWeight="700">PF: {pf}</text>
+                    </g>
 
                     {/* Bottom terminal strip */}
                     <line x1="40" y1="290" x2="260" y2="290" stroke="rgba(226,228,232,0.1)" strokeWidth="1" />
@@ -213,6 +314,31 @@ export default function HeroSection() {
                     {/* Voltage waveform overlay */}
                     <path d="M40 355 Q65 335 90 355 T140 355 T190 355 T240 355" stroke="rgba(234,179,8,0.15)" strokeWidth="1" fill="none" className="animate-waveform" />
                   </svg>
+                  
+                  {/* Interactive Tooltip Overlay inside Panel */}
+                  <div className={`absolute top-[45%] left-1/2 glass-panel p-4 rounded-lg shadow-2xl z-20 w-44 panel-tooltip border ${hoveredNode ? 'visible' : ''}`}>
+                    {hoveredNode?.startsWith('feeder') && (
+                      <div className="text-center">
+                        <div className="text-[11px] text-ind-300 font-heading tracking-widest uppercase mb-1.5">Feeder {parseInt(hoveredNode.split('-')[1]) + 1}</div>
+                        <div className="text-xl font-bold text-white mb-1.5 drop-shadow-md">Load: {120 + parseInt(hoveredNode.split('-')[1]) * 15}A</div>
+                        <div className="text-[10px] text-[#0D9488] font-bold uppercase tracking-wider">Status: OK</div>
+                      </div>
+                    )}
+                    {hoveredNode === 'metering' && (
+                      <div className="text-center">
+                        <div className="text-[11px] text-ind-300 font-heading tracking-widest uppercase mb-1.5">Main Incomer</div>
+                        <div className="text-xl font-bold text-[#F59E0B] mb-1.5 drop-shadow-md">{voltage}V</div>
+                        <div className="text-[10px] text-[#0D9488] font-bold uppercase tracking-wider">Active Monitoring</div>
+                      </div>
+                    )}
+                    {hoveredNode === 'apfc' && (
+                      <div className="text-center">
+                        <div className="text-[11px] text-ind-300 font-heading tracking-widest uppercase mb-1.5">Power Factor</div>
+                        <div className="text-xl font-bold text-[#0D9488] mb-1.5 drop-shadow-md">{pf}</div>
+                        <div className="text-[10px] text-[#F59E0B] font-bold uppercase tracking-wider">Auto Correction ON</div>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Hazard stripe accent — bottom edge */}
@@ -220,13 +346,13 @@ export default function HeroSection() {
               </div>
 
               {/* Floating data tag — top right */}
-              <div className="absolute -top-3 -right-3 bg-ind-900 border border-ind-700/50 rounded-sm px-3 py-2 shadow-lg" style={{ transform: `translate(${mousePos.x * 5}px, ${mousePos.y * 5}px)`, transition: "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)" }}>
-                <div className="text-haz-500 font-heading text-lg font-bold leading-none">415V</div>
+              <div className="absolute -top-3 -right-3 bg-ind-900 border border-ind-700/50 rounded-sm px-3 py-2 shadow-lg z-30" style={{ transform: `translate(${mousePos.x * 5}px, ${mousePos.y * 5}px)`, transition: "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)" }}>
+                <div className="text-haz-500 font-heading text-lg font-bold leading-none">{voltage}V</div>
                 <div className="text-ind-400 text-[10px] font-heading tracking-widest uppercase">3-Phase Supply</div>
               </div>
 
               {/* Floating data tag — bottom left */}
-              <div className="absolute -bottom-3 -left-3 bg-ind-900 border border-cir-500/20 rounded-sm px-3 py-2 shadow-lg" style={{ transform: `translate(${mousePos.x * -4}px, ${mousePos.y * -4}px)`, transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}>
+              <div className="absolute -bottom-3 -left-3 bg-ind-900 border border-cir-500/20 rounded-sm px-3 py-2 shadow-lg z-30" style={{ transform: `translate(${mousePos.x * -4}px, ${mousePos.y * -4}px)`, transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}>
                 <div className="text-cir-400 font-heading text-lg font-bold leading-none">50Hz</div>
                 <div className="text-ind-400 text-[10px] font-heading tracking-widest uppercase">Power Quality</div>
               </div>
