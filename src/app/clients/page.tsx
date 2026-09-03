@@ -54,33 +54,28 @@ export default function ClientsPage() {
   return (
     <div className="pt-16 md:pt-18">
       {/* Hero — compressed */}
-      <section className="bg-ind-dark py-5 md:py-6 relative overflow-hidden" aria-labelledby="clients-hero-heading">
+      <section className="bg-ind-dark py-6 md:py-8 relative overflow-hidden" aria-labelledby="clients-hero-heading">
         <div className="absolute inset-0 blueprint-grid opacity-40" aria-hidden="true" />
-        <div className="container-custom relative z-10">
-          <div className="flex items-center gap-4 md:gap-6 flex-wrap">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <ChevronRight className="w-4 h-4" aria-hidden="true" />
-              <span className="text-[#F59E0B]">Our Clients</span>
-            </nav>
-            <div className="inline-block px-3 py-1 rounded-sm bg-haz-500/20 border border-haz-500/40">
-              <span className="text-haz-400 text-xs font-bold tracking-widest uppercase">Client Portfolio</span>
-            </div>
+        <div className="container-custom relative z-10 flex flex-col items-start">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-3">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-4 h-4" aria-hidden="true" />
+            <span className="text-[#F59E0B]">Our Clients</span>
+          </nav>
+          
+          <div className="inline-block px-3 py-1 rounded-sm bg-haz-500/20 border border-haz-500/40 mb-5">
+            <span className="text-haz-400 text-xs font-bold tracking-widest uppercase">Client Portfolio</span>
           </div>
-          <h1 id="clients-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mt-1">
+          
+          <h1 id="clients-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
             Trusted by Industry Leaders <span className="text-haz-400">Across India</span>
           </h1>
-        </div>
-      </section>
-
-      {/* Description — moved out of dark band */}
-      <div className="bg-white">
-        <div className="container-custom py-5">
-          <p className="text-ind-500 text-sm md:text-base max-w-2xl leading-relaxed">
+          
+          <p className="text-ind-300 text-sm md:text-base max-w-2xl leading-relaxed">
             Our team of certified consultants and engineers is trusted by leading companies in Real Estate, Pharmaceuticals, Steel, and Chemicals to deliver reliable testing and energy auditing services.
           </p>
         </div>
-      </div>
+      </section>
 
       {/* Clients Grid */}
       <section className="section-padding bg-white relative" aria-label="Our clients">

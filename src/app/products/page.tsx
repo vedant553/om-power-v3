@@ -227,31 +227,32 @@ export default function ProductsPage() {
   return (
     <div className="pt-16 md:pt-18">
       {/* Page Hero — compressed */}
-      <section className="bg-ind-dark py-5 md:py-6 relative overflow-hidden" aria-labelledby="products-hero-heading">
+      <section className="bg-ind-dark py-6 md:py-8 relative overflow-hidden" aria-labelledby="products-hero-heading">
         <div className="absolute inset-0 blueprint-grid opacity-40" aria-hidden="true" />
-        <div className="container-custom relative z-10">
-          <div className="flex items-center gap-4 md:gap-6 flex-wrap">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <ChevronRight className="w-4 h-4" aria-hidden="true" />
-              <span className="text-[#F59E0B]">Products</span>
-            </nav>
-            <div className="inline-block px-3 py-1 rounded-sm bg-[#F59E0B]/15 border border-[#F59E0B]/30">
-              <span className="text-[#F59E0B] text-xs font-bold tracking-widest uppercase">Business Line 1</span>
-            </div>
+        <div className="container-custom relative z-10 flex flex-col items-start">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-3">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-4 h-4" aria-hidden="true" />
+            <span className="text-[#F59E0B]">Products</span>
+          </nav>
+          
+          <div className="inline-block px-3 py-1 rounded-sm bg-[#F59E0B]/15 border border-[#F59E0B]/30 mb-5">
+            <span className="text-[#F59E0B] text-xs font-bold tracking-widest uppercase">Business Line 1</span>
           </div>
-          <h1 id="products-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mt-1">
+          
+          <h1 id="products-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
             Electrical Panel Manufacturing
           </h1>
+          
+          <p className="text-ind-300 text-sm md:text-base max-w-2xl leading-relaxed">
+            Custom-built LT, HT, VFD, APFC, Thyristor switching and SVG hybrid panels — plus end-to-end MSEDCL liaisoning and regulatory approval services.
+          </p>
         </div>
       </section>
 
-      {/* Description + Quick nav — white strip directly under header */}
+      {/* Quick nav — white strip directly under header */}
       <div className="bg-white border-b border-ind-100 sticky top-16 z-40" aria-label="Product navigation">
         <div className="container-custom py-4">
-          <p className="text-ind-500 text-sm md:text-base max-w-2xl leading-relaxed mb-3">
-            Custom-built LT, HT, VFD, APFC, Thyristor switching and SVG hybrid panels — plus end-to-end MSEDCL liaisoning and regulatory approval services.
-          </p>
           <div className="flex gap-1 overflow-x-auto no-scrollbar">
             {products.map((p) => (
               <a

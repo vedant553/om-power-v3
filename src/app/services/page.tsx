@@ -283,31 +283,32 @@ export default function ServicesPage() {
   return (
     <div className="pt-16 md:pt-18">
       {/* Page Hero — compressed */}
-      <section className="bg-ind-dark py-5 md:py-6 relative overflow-hidden" aria-labelledby="services-hero-heading">
+      <section className="bg-ind-dark py-6 md:py-8 relative overflow-hidden" aria-labelledby="services-hero-heading">
         <div className="absolute inset-0 blueprint-grid opacity-40" aria-hidden="true" />
-        <div className="container-custom relative z-10">
-          <div className="flex items-center gap-4 md:gap-6 flex-wrap">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <ChevronRight className="w-4 h-4" aria-hidden="true" />
-              <span className="text-[#0D9488]">Services</span>
-            </nav>
-            <div className="inline-block px-3 py-1 rounded-sm bg-[#0D9488]/20 border border-[#0D9488]/40">
-              <span className="text-[#0D9488] text-xs font-bold tracking-widest uppercase">Business Line 2</span>
-            </div>
+        <div className="container-custom relative z-10 flex flex-col items-start">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-3">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-4 h-4" aria-hidden="true" />
+            <span className="text-[#0D9488]">Services</span>
+          </nav>
+          
+          <div className="inline-block px-3 py-1 rounded-sm bg-[#0D9488]/20 border border-[#0D9488]/40 mb-5">
+            <span className="text-[#0D9488] text-xs font-bold tracking-widest uppercase">Business Line 2</span>
           </div>
-          <h1 id="services-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mt-1">
+          
+          <h1 id="services-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
             Testing &amp; Energy Audit Services
           </h1>
+          
+          <p className="text-ind-300 text-sm md:text-base max-w-2xl leading-relaxed">
+            Comprehensive electrical testing, energy auditing, safety compliance, and power system risk assessment services — ten specialised offerings for industrial plants, chemical facilities, commercial buildings and healthcare infrastructure.
+          </p>
         </div>
       </section>
 
-      {/* Description + Quick nav — white strip directly under header */}
+      {/* Quick nav — white strip directly under header */}
       <div className="bg-white border-b border-ind-100 sticky top-16 z-40" aria-label="Services navigation">
         <div className="container-custom py-4">
-          <p className="text-ind-500 text-sm md:text-base max-w-2xl leading-relaxed mb-3">
-            Comprehensive electrical testing, energy auditing, safety compliance, and power system risk assessment services — ten specialised offerings for industrial plants, chemical facilities, commercial buildings and healthcare infrastructure.
-          </p>
           <div className="flex gap-1 overflow-x-auto no-scrollbar">
             {services.map((s) => (
               <a

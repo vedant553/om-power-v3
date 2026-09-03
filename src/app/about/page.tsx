@@ -50,28 +50,24 @@ export default function AboutPage() {
   return (
     <div className="pt-16 md:pt-18">
       {/* Hero — compressed */}
-      <section className="bg-ind-dark py-5 md:py-6 relative overflow-hidden" aria-labelledby="about-hero-heading">
+      <section className="bg-ind-dark py-6 md:py-8 relative overflow-hidden" aria-labelledby="about-hero-heading">
         <div className="absolute inset-0 blueprint-grid opacity-40" aria-hidden="true" />
-        <div className="container-custom relative z-10">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400">
+        <div className="container-custom relative z-10 flex flex-col items-start">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-5">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" aria-hidden="true" />
             <span className="text-[#F59E0B]">About Us</span>
           </nav>
-          <h1 id="about-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mt-1">
+          
+          <h1 id="about-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
             About Om Power Consultant and Engineers
           </h1>
-        </div>
-      </section>
-
-      {/* Description — moved out of dark band */}
-      <div className="bg-white">
-        <div className="container-custom py-5">
-          <p className="text-ind-500 text-sm md:text-base max-w-2xl leading-relaxed">
+          
+          <p className="text-ind-300 text-sm md:text-base max-w-2xl leading-relaxed">
             A Panvel-based electrical engineering firm — building panels and auditing electrical systems for industries and commercial facilities across Navi Mumbai for over a decade.
           </p>
         </div>
-      </div>
+      </section>
 
       {/* Story section */}
       <section className="section-padding bg-white" aria-labelledby="story-heading">
