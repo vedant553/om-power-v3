@@ -53,25 +53,21 @@ const clients: ClientEntry[] = [
 export default function ClientsPage() {
   return (
     <div className="pt-16 md:pt-18">
-      {/* Hero — compressed */}
+      {/* Page Header */}
       <section className="bg-ind-dark py-6 md:py-8 relative overflow-hidden" aria-labelledby="clients-hero-heading">
         <div className="absolute inset-0 blueprint-grid opacity-40" aria-hidden="true" />
         <div className="container-custom relative z-10 flex flex-col items-start">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-3">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" aria-hidden="true" />
             <span className="text-[#F59E0B]">Our Clients</span>
           </nav>
           
-          <div className="inline-block px-3 py-1 rounded-sm bg-haz-500/20 border border-haz-500/40 mb-5">
-            <span className="text-haz-400 text-xs font-bold tracking-widest uppercase">Client Portfolio</span>
-          </div>
-          
-          <h1 id="clients-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
+          <h1 id="clients-hero-heading" className="font-heading text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3">
             Trusted by Industry Leaders <span className="text-haz-400">Across India</span>
           </h1>
           
-          <p className="text-ind-300 text-sm md:text-base max-w-2xl leading-relaxed">
+          <p className="text-ind-300 text-sm md:text-base max-w-4xl leading-relaxed">
             Our team of certified consultants and engineers is trusted by leading companies in Real Estate, Pharmaceuticals, Steel, and Chemicals to deliver reliable testing and energy auditing services.
           </p>
         </div>

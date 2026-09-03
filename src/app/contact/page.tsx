@@ -58,21 +58,22 @@ const businessHours = [
 export default function ContactPage() {
   return (
     <div className="pt-16 md:pt-18">
-      {/* Hero — compressed */}
+      {/* Page Header */}
+      {/* Page Header */}
       <section className="bg-ind-dark py-6 md:py-8 relative overflow-hidden" aria-labelledby="contact-hero-heading">
         <div className="absolute inset-0 blueprint-grid opacity-40" aria-hidden="true" />
         <div className="container-custom relative z-10 flex flex-col items-start">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-5">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" aria-hidden="true" />
             <span className="text-[#F59E0B]">Contact</span>
           </nav>
           
-          <h1 id="contact-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
+          <h1 id="contact-hero-heading" className="font-heading text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3">
             Get in Touch
           </h1>
           
-          <p className="text-ind-300 text-sm md:text-base max-w-xl leading-relaxed">
+          <p className="text-ind-300 text-sm md:text-base max-w-4xl leading-relaxed">
             Call, WhatsApp, or send us an enquiry. We typically respond within 1 business day — and for urgent queries, a call is always the fastest route.
           </p>
         </div>

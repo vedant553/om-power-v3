@@ -282,46 +282,56 @@ const services = [
 export default function ServicesPage() {
   return (
     <div className="pt-16 md:pt-18">
-      {/* Page Hero — compressed */}
+      {/* Page Header */}
       <section className="bg-ind-dark py-6 md:py-8 relative overflow-hidden" aria-labelledby="services-hero-heading">
         <div className="absolute inset-0 blueprint-grid opacity-40" aria-hidden="true" />
         <div className="container-custom relative z-10 flex flex-col items-start">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-3">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" aria-hidden="true" />
             <span className="text-[#0D9488]">Services</span>
           </nav>
           
-          <div className="inline-block px-3 py-1 rounded-sm bg-[#0D9488]/20 border border-[#0D9488]/40 mb-5">
-            <span className="text-[#0D9488] text-xs font-bold tracking-widest uppercase">Business Line 2</span>
-          </div>
-          
-          <h1 id="services-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
+          <h1 id="services-hero-heading" className="font-heading text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3">
             Testing &amp; Energy Audit Services
           </h1>
           
-          <p className="text-ind-300 text-sm md:text-base max-w-2xl leading-relaxed">
+          <p className="text-ind-300 text-sm md:text-base max-w-4xl leading-relaxed">
             Comprehensive electrical testing, energy auditing, safety compliance, and power system risk assessment services — ten specialised offerings for industrial plants, chemical facilities, commercial buildings and healthcare infrastructure.
           </p>
         </div>
       </section>
 
-      {/* Quick nav — white strip directly under header */}
-      <div className="bg-white border-b border-ind-100 sticky top-16 z-40" aria-label="Services navigation">
-        <div className="container-custom py-4">
-          <div className="flex gap-1 overflow-x-auto no-scrollbar">
+      {/* Overview Card Grid */}
+      <section className="bg-ind-50 py-10 border-b border-ind-100" aria-label="Services Overview">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {services.map((s) => (
-              <a
-                key={s.id}
-                href={`#${s.id}`}
-                className="flex-shrink-0 px-4 py-1.5 rounded-sm text-sm font-semibold text-ind-500 hover:bg-[#0D9488] hover:text-white transition-colors border border-ind-200 hover:border-[#0D9488]"
-              >
-                {s.name}
-              </a>
+              <div key={`card-${s.id}`} className="bg-white border border-ind-100 rounded-sm shadow-sm overflow-hidden flex flex-col transition-all hover:shadow-md hover:border-ind-200 group">
+                <div className="relative h-48 w-full overflow-hidden bg-ind-100">
+                  {s.image ? (
+                    <Image src={s.image} alt={s.imageAlt || s.fullName} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw" />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-ind-400 font-heading text-xs tracking-widest uppercase">No Image</div>
+                  )}
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="px-2 py-1 rounded-sm text-[10px] font-bold tracking-widest uppercase text-white shadow-sm" style={{ background: s.accentColor }}>
+                      {s.name}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-5 flex flex-col flex-grow">
+                  <h3 className="font-heading text-lg font-bold text-[#0A1628] mb-2 group-hover:text-[#0D9488] transition-colors line-clamp-2">{s.fullName}</h3>
+                  <p className="text-ind-500 text-sm line-clamp-2 mb-4 flex-grow">{s.description}</p>
+                  <a href={`#${s.id}`} className="inline-flex items-center text-sm font-semibold text-[#0A1628] hover:text-[#0D9488] transition-colors mt-auto group/link">
+                    View Details <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover/link:translate-x-1" aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Service sections */}
       <div>

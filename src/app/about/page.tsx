@@ -49,21 +49,21 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="pt-16 md:pt-18">
-      {/* Hero — compressed */}
+      {/* Page Header */}
       <section className="bg-ind-dark py-6 md:py-8 relative overflow-hidden" aria-labelledby="about-hero-heading">
         <div className="absolute inset-0 blueprint-grid opacity-40" aria-hidden="true" />
         <div className="container-custom relative z-10 flex flex-col items-start">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-5">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" aria-hidden="true" />
             <span className="text-[#F59E0B]">About Us</span>
           </nav>
           
-          <h1 id="about-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
+          <h1 id="about-hero-heading" className="font-heading text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3">
             About Om Power Consultant and Engineers
           </h1>
           
-          <p className="text-ind-300 text-sm md:text-base max-w-2xl leading-relaxed">
+          <p className="text-ind-300 text-sm md:text-base max-w-4xl leading-relaxed">
             A Panvel-based electrical engineering firm — building panels and auditing electrical systems for industries and commercial facilities across Navi Mumbai for over a decade.
           </p>
         </div>

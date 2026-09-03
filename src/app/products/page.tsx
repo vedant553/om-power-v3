@@ -226,46 +226,56 @@ const products = [
 export default function ProductsPage() {
   return (
     <div className="pt-16 md:pt-18">
-      {/* Page Hero — compressed */}
+      {/* Page Header */}
       <section className="bg-ind-dark py-6 md:py-8 relative overflow-hidden" aria-labelledby="products-hero-heading">
         <div className="absolute inset-0 blueprint-grid opacity-40" aria-hidden="true" />
         <div className="container-custom relative z-10 flex flex-col items-start">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-3">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-ind-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" aria-hidden="true" />
             <span className="text-[#F59E0B]">Products</span>
           </nav>
           
-          <div className="inline-block px-3 py-1 rounded-sm bg-[#F59E0B]/15 border border-[#F59E0B]/30 mb-5">
-            <span className="text-[#F59E0B] text-xs font-bold tracking-widest uppercase">Business Line 1</span>
-          </div>
-          
-          <h1 id="products-hero-heading" className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
+          <h1 id="products-hero-heading" className="font-heading text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3">
             Electrical Panel Manufacturing
           </h1>
           
-          <p className="text-ind-300 text-sm md:text-base max-w-2xl leading-relaxed">
+          <p className="text-ind-300 text-sm md:text-base max-w-4xl leading-relaxed">
             Custom-built LT, HT, VFD, APFC, Thyristor switching and SVG hybrid panels — plus end-to-end MSEDCL liaisoning and regulatory approval services.
           </p>
         </div>
       </section>
 
-      {/* Quick nav — white strip directly under header */}
-      <div className="bg-white border-b border-ind-100 sticky top-16 z-40" aria-label="Product navigation">
-        <div className="container-custom py-4">
-          <div className="flex gap-1 overflow-x-auto no-scrollbar">
+      {/* Overview Card Grid */}
+      <section className="bg-ind-50 py-10 border-b border-ind-100" aria-label="Products Overview">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
             {products.map((p) => (
-              <a
-                key={p.id}
-                href={`#${p.id}`}
-                className="flex-shrink-0 px-4 py-1.5 rounded-sm text-sm font-semibold text-ind-500 hover:bg-[#0A1628] hover:text-white transition-colors border border-ind-200 hover:border-[#0A1628]"
-              >
-                {p.name}
-              </a>
+              <div key={`card-${p.id}`} className="bg-white border border-ind-100 rounded-sm shadow-sm overflow-hidden flex flex-col transition-all hover:shadow-md hover:border-ind-200 group">
+                <div className="relative h-48 w-full overflow-hidden bg-ind-100">
+                  {p.image ? (
+                    <Image src={p.image} alt={p.imageAlt || p.fullName} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-ind-400 font-heading text-xs tracking-widest uppercase">No Image</div>
+                  )}
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="px-2 py-1 rounded-sm text-[10px] font-bold tracking-widest uppercase text-white shadow-sm" style={{ background: p.badgeColor }}>
+                      {p.badge}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-5 flex flex-col flex-grow">
+                  <h3 className="font-heading text-lg font-bold text-[#0A1628] mb-2 group-hover:text-[#F59E0B] transition-colors">{p.fullName}</h3>
+                  <p className="text-ind-500 text-sm line-clamp-2 mb-4 flex-grow">{p.description}</p>
+                  <a href={`#${p.id}`} className="inline-flex items-center text-sm font-semibold text-[#0A1628] hover:text-[#F59E0B] transition-colors mt-auto group/link">
+                    View Details <ChevronRight className="w-4 h-4 ml-1 transition-transform group-hover/link:translate-x-1" aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Product sections */}
       <div>
