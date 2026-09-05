@@ -2,13 +2,13 @@ export default function JsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://ompowerconsultant.com/#business",
+    "@id": "https://www.ompowerconsultants.com/#business",
     "name": "Om Power Consultant and Engineers",
     "alternateName": "Om Power Consultants",
     "description":
       "Full-service electrical engineering firm offering custom LT, HT, VFD and APFC panel manufacturing, and professional energy auditing, power quality audit, electrical safety audit and thermographic testing services in Panvel, Navi Mumbai and the greater Mumbai industrial belt.",
-    "url": "https://ompowerconsultant.com",
-    "logo": "https://ompowerconsultant.com/logo.png",
+    "url": "https://www.ompowerconsultants.com",
+    "logo": "https://www.ompowerconsultants.com/logo.png",
     "email": "ompowerconsultancy2017@gmail.com",
     "telephone": "+919168029393",
     "address": {

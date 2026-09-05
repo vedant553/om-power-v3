@@ -20,7 +20,7 @@ const chakraPetch = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ompowerconsultant.com"),
+  metadataBase: new URL("https://www.ompowerconsultants.com"),
   title: {
     default:
       "Om Power Consultant and Engineers | Electrical Panel Manufacturing & Energy Audit — Panvel, Navi Mumbai",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://ompowerconsultant.com",
+    url: "https://www.ompowerconsultants.com",
     siteName: "Om Power Consultant and Engineers",
     title:
       "Om Power Consultant and Engineers | Electrical Panel Manufacturing & Energy Audit",
