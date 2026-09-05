@@ -355,7 +355,7 @@ export default function ProductsPage() {
                     </ul>
                   </div>
 
-                  <Link href="/contact" id={`${product.id}-enquiry-cta`} className="btn-primary">
+                  <Link href={`/contact?interested=${product.id}`} id={`${product.id}-enquiry-cta`} className="btn-primary">
                     Enquire About {product.name}
                     <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </Link>

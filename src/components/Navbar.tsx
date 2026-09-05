@@ -69,14 +69,14 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <a
+            <Link
               href="/contact"
               id="nav-call-cta"
               className="btn-primary !py-2 !px-4 !text-xs"
               aria-label="Get a quote"
             >
               Get a Quote
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Hamburger */}
@@ -115,11 +115,11 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="flex gap-3 px-4 mt-3">
-              <a href="/contact" id="mobile-cta" className="btn-primary flex-1 justify-center !py-2.5 !text-xs">
+              <Link href="/contact" id="mobile-cta" className="btn-primary flex-1 justify-center !py-2.5 !text-xs">
                 Get a Quote
-              </a>
+              </Link>
               <a
-                href="/contact"
+                href="https://wa.me/919168029393?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20your%20services."
                 target="_blank"
                 rel="noopener noreferrer"
                 id="mobile-whatsapp-cta"

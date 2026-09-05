@@ -33,9 +33,9 @@ export default function CTABanner() {
               Request a Free Quote
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
-            <a href="/contact" id="cta-banner-contact" className="btn-secondary">
+            <Link href="/contact" id="cta-banner-contact" className="btn-secondary">
               Contact Us
-            </a>
+            </Link>
           </div>
 
           <p className="mt-8 text-ind-500 text-sm font-heading">

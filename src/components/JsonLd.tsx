@@ -9,7 +9,7 @@ export default function JsonLd() {
       "Full-service electrical engineering firm offering custom LT, HT, VFD and APFC panel manufacturing, and professional energy auditing, power quality audit, electrical safety audit and thermographic testing services in Panvel, Navi Mumbai and the greater Mumbai industrial belt.",
     "url": "https://ompowerconsultant.com",
     "logo": "https://ompowerconsultant.com/logo.png",
-    "email": "ompowerconsultancy@yahoo.com",
+    "email": "ompowerconsultancy2017@gmail.com",
     "telephone": "+919168029393",
     "address": {
       "@type": "PostalAddress",

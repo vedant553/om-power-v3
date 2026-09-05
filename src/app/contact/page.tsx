@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Phone, Mail, MapPin, Clock, MessageCircle, ChevronRight } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Contact Us — Get a Quote for Electrical Panels or Energy Audit | Panvel, Navi Mumbai",
@@ -33,8 +34,8 @@ const contactDetails = [
   {
     icon: Mail,
     label: "Email",
-    value: "ompowerconsultancy@yahoo.com",
-    href: "mailto:ompowerconsultancy@yahoo.com",
+    value: "ompowerconsultancy2017@gmail.com",
+    href: "mailto:ompowerconsultancy2017@gmail.com",
     id: "contact-email-link",
   },
   {
@@ -153,7 +154,9 @@ export default function ContactPage() {
             <div className="lg:col-span-3">
               <h2 className="font-heading text-xl font-bold text-[#0A1628] mb-5">Send Us an Enquiry</h2>
               <div className="bg-white rounded-sm border border-ind-100  p-6 md:p-8">
-                <ContactForm />
+                <Suspense fallback={<div className="text-center py-8">Loading form...</div>}>
+                  <ContactForm />
+                </Suspense>
               </div>
             </div>
           </div>

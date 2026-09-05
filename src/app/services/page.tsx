@@ -422,7 +422,7 @@ export default function ServicesPage() {
                       </ul>
                     </div>
 
-                    <Link href="/contact" id={`${service.id}-enquiry-cta`} className="btn-cir">
+                    <Link href={`/contact?interested=${service.id}`} id={`${service.id}-enquiry-cta`} className="btn-cir">
                       Enquire About {service.name}
                       <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </Link>

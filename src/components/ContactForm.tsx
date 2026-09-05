@@ -1,54 +1,105 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect, Suspense } from "react";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { useSearchParams } from "next/navigation";
 
-// TODO: Sign up at https://formspree.io and replace the form ID below with your actual endpoint.
-// Free tier allows 50 submissions/month. Upgrade for more.
-const FORMSPREE_ID = "xpwzyabq"; // TODO: Replace with actual Formspree form ID
+// Initialize EmailJS with public key
+emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "");
 
 const interestedInOptions = [
   // Panel Manufacturing
-  "LT Panel (Low Tension Panel)",
-  "HT Panel (High Tension Panel)",
-  "VFD Panel (Variable Frequency Drive Panel)",
-  "Control & APFC Panel (Power Factor Correction)",
+  "LT Panel",
+  "HT Panel",
+  "VFD Panel",
+  "Control & APFC Panel",
+  "Thyristor Panel",
+  "SVG Hybrid Panel",
+  "MSEDCL Liaisoning",
   // Testing & Consulting
-  "Energy Audit Services",
-  "Power Quality Audit / Harmonics Measurement",
+  "Energy Audit",
+  "Power Quality Audit",
   "Electrical Safety Audit",
-  "Electrical Testing / Thermographic Testing",
+  "Thermographic Testing",
+  "Hazardous Area Classification",
+  "Arc-Flash Study",
+  "Lightning Risk Assessment",
+  "AMC",
+  "Bill Analysis",
+  "Energy Audits",
   // Other
   "General Enquiry",
   "Other",
 ];
 
+// Slug mapping for deep-linking
+const slugToOptionMap: Record<string, string> = {
+  "lt-panel": "LT Panel",
+  "ht-panel": "HT Panel",
+  "vfd-panel": "VFD Panel",
+  "apfc-panel": "Control & APFC Panel",
+  "thyristor-panel": "Thyristor Panel",
+  "svg-hybrid-panel": "SVG Hybrid Panel",
+  "msedcl-liaisoning": "MSEDCL Liaisoning",
+  "energy-audit": "Energy Audit",
+  "power-quality": "Power Quality Audit",
+  "safety-audit": "Electrical Safety Audit",
+  "thermographic": "Thermographic Testing",
+  "hazardous-area-classification": "Hazardous Area Classification",
+  "arc-flash-study": "Arc-Flash Study",
+  "lightning-risk-assessment": "Lightning Risk Assessment",
+  "amc-power-factor": "AMC",
+  "bill-analysis": "Bill Analysis",
+  "walkthrough-detailed-audit": "Energy Audits",
+};
+
 type FormState = "idle" | "submitting" | "success" | "error";
 
-export default function ContactForm() {
+function ContactFormInner() {
   const [formState, setFormState] = useState<FormState>("idle");
+  const [preselectedOption, setPreselectedOption] = useState<string>("");
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const interestedParam = searchParams?.get("interested");
+    if (interestedParam && slugToOptionMap[interestedParam]) {
+      setPreselectedOption(slugToOptionMap[interestedParam]);
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormState("submitting");
 
     const form = e.currentTarget;
-    const data = new FormData(form);
+    const formData = new FormData(form);
+
+    // Map form fields to EmailJS template parameters
+    const templateParams = {
+      from_name: formData.get("name") as string,
+      phone: formData.get("phone") as string,
+      from_email: formData.get("email") as string,
+      interested_in: formData.get("interested_in") as string,
+      company: formData.get("company") as string,
+      message: formData.get("message") as string,
+    };
 
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
-      });
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 
-      if (res.ok) {
-        setFormState("success");
-        form.reset();
-      } else {
-        setFormState("error");
+      if (!serviceId || !templateId) {
+        throw new Error("EmailJS configuration is missing");
       }
-    } catch {
+
+      await emailjs.send(serviceId, templateId, templateParams);
+
+      setFormState("success");
+      form.reset();
+      setPreselectedOption(""); // Clear preselection after successful submission
+    } catch (error) {
+      console.error("EmailJS error:", error);
       setFormState("error");
     }
   };
@@ -75,10 +126,6 @@ export default function ContactForm() {
       aria-label="Contact enquiry form"
       className="space-y-5"
     >
-      {/* Hidden fields for Formspree */}
-      <input type="hidden" name="_subject" value="New Enquiry — Om Power Consultant and Engineers Website" />
-      <input type="text" name="_gotcha" className="hidden" tabIndex={-1} aria-hidden="true" />
-
       <div className="grid sm:grid-cols-2 gap-5">
         {/* Name */}
         <div>
@@ -137,21 +184,22 @@ export default function ContactForm() {
           name="interested_in"
           required
           className="form-input"
-          defaultValue=""
+          value={preselectedOption || ""}
+          onChange={(e) => setPreselectedOption(e.target.value)}
         >
           <option value="" disabled>Select a product or service...</option>
           <optgroup label="Panel Manufacturing">
-            {interestedInOptions.slice(0, 4).map((opt) => (
+            {interestedInOptions.slice(0, 7).map((opt) => (
               <option key={opt} value={opt}>{opt}</option>
             ))}
           </optgroup>
           <optgroup label="Testing & Energy Audit">
-            {interestedInOptions.slice(4, 8).map((opt) => (
+            {interestedInOptions.slice(7, 17).map((opt) => (
               <option key={opt} value={opt}>{opt}</option>
             ))}
           </optgroup>
           <optgroup label="Other">
-            {interestedInOptions.slice(8).map((opt) => (
+            {interestedInOptions.slice(17).map((opt) => (
               <option key={opt} value={opt}>{opt}</option>
             ))}
           </optgroup>
@@ -189,9 +237,12 @@ export default function ContactForm() {
 
       {/* Error message */}
       {formState === "error" && (
-        <div className="flex items-center gap-2 text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg px-4 py-3" role="alert">
-          <AlertCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-          Something went wrong. Please try again, or call us directly.
+        <div className="flex items-start gap-2 text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg px-4 py-3" role="alert">
+          <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
+          <div>
+            <p className="font-semibold mb-1">Unable to send enquiry</p>
+            <p className="text-red-600/80">Please try again, or contact us directly by phone or WhatsApp for immediate assistance.</p>
+          </div>
         </div>
       )}
 
@@ -223,5 +274,13 @@ export default function ContactForm() {
         We respond within 1 business day. For urgent queries, call or WhatsApp directly.
       </p>
     </form>
+  );
+}
+
+export default function ContactForm() {
+  return (
+    <Suspense fallback={<div className="opacity-0">Loading...</div>}>
+      <ContactFormInner />
+    </Suspense>
   );
 }

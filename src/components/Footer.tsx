@@ -116,8 +116,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-haz-500 flex-shrink-0" aria-hidden="true" />
-                <a href="mailto:ompowerconsultancy@yahoo.com" className="text-sm text-ind-400 hover:text-white transition-colors break-all">
-                  ompowerconsultancy@yahoo.com
+                <a href="mailto:ompowerconsultancy2017@gmail.com" className="text-sm text-ind-400 hover:text-white transition-colors break-all">
+                  ompowerconsultancy2017@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3">

@@ -178,18 +178,18 @@ export default function HeroSection() {
                 Request a Quote
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
-              <a href="/contact" id="hero-call-cta" className="btn-secondary">
+              <Link href="/contact" id="hero-call-cta" className="btn-secondary">
                 <Phone className="w-4 h-4" aria-hidden="true" />
                 Call Us
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/contact"
                 id="hero-whatsapp-cta"
                 className="btn-cir"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 WhatsApp
-              </a>
+              </Link>
             </div>
 
             {/* Trust signals */}
