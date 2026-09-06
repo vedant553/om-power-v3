@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -44,8 +45,15 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group" aria-label="Om Power Consultant and Engineers - Home">
-            <div className="flex items-center justify-center w-8 h-8 rounded-sm bg-haz-500 group-hover:scale-105 transition-transform duration-200">
-              <Zap className="w-4 h-4 text-ind-950" aria-hidden="true" />
+            <div className="relative flex items-center justify-center w-9 h-9 group-hover:scale-105 transition-transform duration-200">
+              <Image
+                src="/logo.png"
+                alt="Om Power Logo"
+                width={36}
+                height={36}
+                className="w-full h-full object-contain drop-shadow-sm"
+                priority
+              />
             </div>
             <div className="flex flex-col leading-tight">
               <span className="font-heading font-bold text-white text-sm leading-none tracking-wide">

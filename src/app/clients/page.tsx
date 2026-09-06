@@ -19,13 +19,15 @@ interface ClientEntry {
   name: string;
   logo?: string;
   logoWidth?: number;
+  logoHeight?: number;
 }
 
 const clients: ClientEntry[] = [
   { name: "Godrej Properties", logo: "/clients/godrej-properties.png", logoWidth: 160 },
   { name: "Godrej Industries", logo: "/clients/godrej-industries.png", logoWidth: 140 },
-  { name: "Tata Cancer Centre", logo: "/clients/tata-memorial.png", logoWidth: 120 },
+  { name: "Tata Cancer Centre", logo: "/clients/tata-memorial.png", logoWidth: 90, logoHeight: 90 },
   { name: "Petronas Lubricants", logo: "/clients/petronas.png", logoWidth: 150 },
+  { name: "Veedol", logo: "/clients/veedol.png", logoWidth: 160 },
   { name: "Welspun Michigan Engineers", logo: "/clients/welspun-michigan.png", logoWidth: 200 },
   { name: "Vinati Organics", logo: "/clients/vinati-organics.png", logoWidth: 160 },
   { name: "Nipro Pharma", logo: "/clients/nipro-group.png", logoWidth: 160 },
@@ -34,14 +36,13 @@ const clients: ClientEntry[] = [
   { name: "Alana Khopoli", logo: "/clients/alana-khopoli.png", logoWidth: 150 },
   { name: "LSR Speciality Oils", logo: "/clients/lsr-oils.png", logoWidth: 130 },
   { name: "Emil Pharma", logo: "/clients/emil-pharma.png", logoWidth: 100 },
-  { name: "DK Pharma", logo: "/clients/dk-pharma.png", logoWidth: 80 },
+  { name: "DK Pharma", logo: "/clients/dk-pharma.png", logoWidth: 180 },
   { name: "Avyasta Pharma", logo: "/clients/avyasta-pharma.png", logoWidth: 80 },
-  { name: "Korton Pharma", logo: "/clients/korton-pharma.png", logoWidth: 70 },
+  { name: "Korton Pharma", logo: "/clients/korton-pharma.png", logoWidth: 150 },
   { name: "Neon Labs", logo: "/clients/neon-labs.png", logoWidth: 180 },
   { name: "CETP Koparkhairne", logo: "/clients/cetp-koparkhairne.png", logoWidth: 100 },
   { name: "Morning Star", logo: "/clients/morningstar.png", logoWidth: 180 },
   { name: "Lakshya Chandi Heights", logo: "/clients/lakshya-chandi.png", logoWidth: 200 },
-  { name: "AGS Global", logo: "/clients/ags-global.png", logoWidth: 130 },
   { name: "Aezis Global Private", logo: "/clients/aezis-global.png", logoWidth: 160 },
   { name: "Cantor Pharma", logo: "/clients/cantor-pharma.png", logoWidth: 160 },
   { name: "Wanbury", logo: "/clients/wanbury.png", logoWidth: 150 },
@@ -93,7 +94,7 @@ export default function ClientsPage() {
                       src={client.logo}
                       alt={`${client.name} logo`}
                       width={client.logoWidth || 150}
-                      height={60}
+                      height={client.logoHeight || 60}
                       className="max-h-24 md:max-h-28 w-auto object-contain opacity-75 group-hover:opacity-100 transition-opacity duration-300"
                       priority={false}
                     />

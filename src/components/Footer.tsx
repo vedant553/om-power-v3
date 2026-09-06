@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Zap, MapPin, Mail, Clock, Phone } from "lucide-react";
+import Image from "next/image";
+import { MapPin, Mail, Clock, Phone } from "lucide-react";
 
 const productLinks = [
   { href: "/products#lt-panel", label: "LT Panel" },
@@ -36,9 +37,15 @@ export default function Footer() {
 
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-4" aria-label="Om Power Consultant and Engineers">
-              <div className="flex items-center justify-center w-8 h-8 rounded-sm bg-haz-500">
-                <Zap className="w-4 h-4 text-ind-950" aria-hidden="true" />
+            <Link href="/" className="flex items-center gap-2.5 mb-4 group inline-flex" aria-label="Om Power Consultant and Engineers">
+              <div className="relative flex items-center justify-center w-9 h-9 group-hover:scale-105 transition-transform duration-200">
+                <Image
+                  src="/logo.png"
+                  alt="Om Power Logo"
+                  width={36}
+                  height={36}
+                  className="w-full h-full object-contain drop-shadow-sm"
+                />
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="font-heading font-bold text-white text-sm tracking-wide">OM POWER</span>

@@ -40,10 +40,9 @@ const contactDetails = [
   },
   {
     icon: MapPin,
-    label: "Address",
-    // TODO: Replace with client's exact street address
-    value: "Panvel, Navi Mumbai, Maharashtra — 410206",
-    href: "https://maps.google.com/?q=Panvel,Navi+Mumbai",
+    label: "Location",
+    value: "Rasayani, Maharashtra (18°53'44.6\"N 73°12'00.7\"E)",
+    href: "https://maps.google.com/?q=18.895722,73.200194",
     id: "contact-address-link",
     external: true,
   },
@@ -166,13 +165,24 @@ export default function ContactPage() {
       {/* Google Maps embed */}
       <section className="bg-ind-50" aria-label="Our location on map">
         <div className="container-custom py-8">
-          <h2 className="font-heading text-xl font-bold text-[#0A1628] mb-4">Find Us — Panvel, Navi Mumbai</h2>
-          {/* TODO: Replace this embed with the exact address Google Maps embed from client */}
-          {/* To get the embed: go to maps.google.com → search your address → Share → Embed a map → copy iframe src */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+            <div>
+              <h2 className="font-heading text-xl font-bold text-[#0A1628]">Find Us — Rasayani</h2>
+              <span className="text-xs text-ind-500 font-mono">18°53&apos;44.6&quot;N 73°12&apos;00.7&quot;E</span>
+            </div>
+            <a
+              href="https://maps.google.com/?q=18.895722,73.200194"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold text-[#0D9488] hover:text-[#0b7a70] hover:underline inline-flex items-center gap-1.5 transition-colors"
+            >
+              Open in Google Maps &rarr;
+            </a>
+          </div>
           <div className="rounded-sm overflow-hidden border border-ind-200 ">
             <iframe
-              title="Om Power Consultant and Engineers location — Panvel, Navi Mumbai"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60386.90!2d73.0935!3d18.9894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7e8bb7e5b7a1b%3A0x3ccd4a4b5b5b5b5b!2sPanvel%2C%20Navi%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1000000000000"
+              title="Om Power Consultant and Engineers location — Rasayani"
+              src="https://maps.google.com/maps?q=18.895722,73.200194&hl=en&z=15&output=embed"
               width="100%"
               height="400"
               style={{ border: 0 }}
@@ -181,9 +191,6 @@ export default function ContactPage() {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          <p className="text-xs text-amber-600 font-medium mt-2 italic">
-            {/* TODO: Replace map embed with exact business address pin once confirmed with client */}
-          </p>
         </div>
       </section>
     </div>
