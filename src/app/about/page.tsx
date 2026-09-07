@@ -177,15 +177,18 @@ export default function AboutPage() {
           </div>
           <div className="max-w-sm mx-auto">
             <div className="bg-white rounded-sm border border-ind-100  overflow-hidden card-industrial">
-              {/* TODO: Replace with actual photo of S. Parange */}
-              <div className="relative h-56 bg-gradient-to-br from-[#0A1628] to-[#1e3670] flex items-center justify-center">
-                <div className="w-20 h-20 rounded-sm bg-ind-800 flex items-center justify-center">
-                  <Users className="w-10 h-10 text-white/50" aria-hidden="true" />
-                </div>
-
+              <div className="relative h-72 sm:h-80 w-full overflow-hidden bg-ind-100">
+                <Image
+                  src="/team/shyam-parange.jpg"
+                  alt="Shyam Parange — Founder & Principal Engineer, Om Power Consultant and Engineers"
+                  fill
+                  className="object-cover object-top hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, 384px"
+                  priority
+                />
               </div>
               <div className="p-6">
-                <h3 className="font-heading text-xl font-bold text-ind-950">S. Parange</h3>
+                <h3 className="font-heading text-xl font-bold text-ind-950">Shyam Parange</h3>
                 <p className="text-cir-500 text-sm font-semibold mb-3">Founder &amp; Principal Engineer</p>
                 <p className="text-ind-500 text-sm leading-relaxed">
                   Electrical engineer with deep expertise in panel manufacturing and energy auditing across the Mumbai industrial belt.

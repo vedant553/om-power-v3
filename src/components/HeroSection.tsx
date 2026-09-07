@@ -59,7 +59,10 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex items-center overflow-hidden bg-ind-dark"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{
+        background: "linear-gradient(160deg, #09150f 0%, #0F1F17 50%, #16281F 100%)",
+      }}
       aria-labelledby="hero-heading"
     >
       <style dangerouslySetInnerHTML={{__html: `
@@ -87,9 +90,9 @@ export default function HeroSection() {
           filter: drop-shadow(0 0 8px rgba(79, 209, 197, 0.6));
         }
         .glass-panel {
-          background: rgba(10, 22, 40, 0.85);
+          background: rgba(12, 26, 18, 0.9);
           backdrop-filter: blur(12px);
-          border: 1px solid rgba(79, 209, 197, 0.3);
+          border: 1px solid rgba(79, 209, 197, 0.35);
         }
       `}} />
 
@@ -99,9 +102,9 @@ export default function HeroSection() {
       {/* Waveform SVGs */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" fill="none">
-          <path d="M0 300 Q50 200 100 300 T200 300 T300 300 T400 300 T500 300 T600 300 T700 300 T800 300" stroke="rgba(234,179,8,0.12)" strokeWidth="2" fill="none" className="animate-waveform" style={{ animationDuration: "3s" }} />
-          <path d="M0 320 Q50 220 100 320 T200 320 T300 320 T400 320 T500 320 T600 320 T700 320 T800 320" stroke="rgba(79,209,197,0.08)" strokeWidth="1.5" fill="none" className="animate-waveform" style={{ animationDuration: "4s", animationDelay: "1s" }} />
-          <path d="M0 280 Q50 380 100 280 T200 280 T300 280 T400 280 T500 280 T600 280 T700 280 T800 280" stroke="rgba(234,179,8,0.06)" strokeWidth="1" fill="none" className="animate-waveform" style={{ animationDuration: "5s", animationDelay: "0.5s" }} />
+          <path d="M0 300 Q50 200 100 300 T200 300 T300 300 T400 300 T500 300 T600 300 T700 300 T800 300" stroke="rgba(234,179,8,0.12)" strokeWidth="2" fill="none" strokeDasharray="20 10" className="animate-waveform" style={{ animationDuration: "3s" }} />
+          <path d="M0 320 Q50 220 100 320 T200 320 T300 320 T400 320 T500 320 T600 320 T700 320 T800 320" stroke="rgba(79,209,197,0.08)" strokeWidth="1.5" fill="none" strokeDasharray="20 10" className="animate-waveform" style={{ animationDuration: "4s", animationDelay: "1s" }} />
+          <path d="M0 280 Q50 380 100 280 T200 280 T300 280 T400 280 T500 280 T600 280 T700 280 T800 280" stroke="rgba(234,179,8,0.06)" strokeWidth="1" fill="none" strokeDasharray="20 10" className="animate-waveform" style={{ animationDuration: "5s", animationDelay: "0.5s" }} />
         </svg>
       </div>
 
@@ -133,13 +136,13 @@ export default function HeroSection() {
       />
 
       {/* Content — asymmetric split */}
-      <div className="container-custom relative z-10 pt-28 pb-20 md:pt-36 md:pb-24">
+      <div className="container-custom relative z-10 pt-20 pb-8 md:pt-24 md:pb-10 lg:pt-24 lg:pb-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
           {/* Left column — text + CTA (7 cols) */}
           <div className="lg:col-span-7 xl:col-span-7">
             {/* Flickering indicator dot */}
-            <div className="flex items-center gap-3 mb-8 animate-fade-in">
+            <div className="flex items-center gap-3 mb-4 md:mb-5 animate-fade-in">
               <span className="w-2 h-2 rounded-full bg-haz-500 flicker-accent" aria-hidden="true" />
               <span className="text-haz-500/80 font-heading text-xs font-semibold tracking-[0.2em] uppercase">Panvel, Navi Mumbai</span>
               <span className="w-px h-3 bg-ind-600" aria-hidden="true" />
@@ -149,7 +152,7 @@ export default function HeroSection() {
             {/* Headline */}
             <h1
               id="hero-heading"
-              className="font-heading text-[2.75rem] sm:text-[3.5rem] md:text-[4.25rem] lg:text-[4.75rem] xl:text-5xl font-bold text-white leading-[1.05] mb-6 animate-fade-in-up"
+              className="font-heading text-[2.5rem] sm:text-[3.25rem] md:text-[3.85rem] lg:text-[3.25rem] xl:text-[3.65rem] font-bold text-white leading-[1.08] mb-4 md:mb-5 animate-fade-in-up"
               style={{ animationDelay: "0.1s" }}
             >
               Smarter Power.<br />
@@ -160,7 +163,7 @@ export default function HeroSection() {
 
             {/* Body */}
             <p
-              className="text-ind-300 text-base sm:text-lg md:text-xl leading-relaxed mb-10 max-w-xl animate-fade-in-up"
+              className="text-ind-300 text-base sm:text-lg md:text-xl leading-relaxed mb-6 md:mb-7 max-w-xl animate-fade-in-up"
               style={{ animationDelay: "0.25s" }}
             >
               Custom LT, HT, VFD &amp; APFC panel manufacturing paired with
@@ -171,7 +174,7 @@ export default function HeroSection() {
 
             {/* CTA row */}
             <div
-              className="flex flex-wrap gap-4 mb-12 animate-fade-in-up"
+              className="flex flex-wrap gap-4 mb-6 md:mb-7 animate-fade-in-up"
               style={{ animationDelay: "0.4s" }}
             >
               <Link href="/contact" id="hero-get-quote-cta" className="btn-primary">
@@ -194,7 +197,7 @@ export default function HeroSection() {
 
             {/* Trust signals */}
             <div
-              className="flex flex-wrap gap-x-8 gap-y-3 animate-fade-in-up border-t border-ind-700/50 pt-6"
+              className="flex flex-wrap gap-x-8 gap-y-3 animate-fade-in-up border-t border-[#234533]/70 pt-4 md:pt-5"
               style={{ animationDelay: "0.55s" }}
             >
               {[
@@ -221,7 +224,7 @@ export default function HeroSection() {
                 }}
               >
                 {/* Dark panel face */}
-                <div className="absolute inset-0 bg-gradient-to-br from-ind-800/80 to-ind-950/90 border border-ind-700/30 rounded-sm">
+                <div className="absolute inset-0 rounded-sm border border-[#244834]/50" style={{ background: 'linear-gradient(135deg, rgba(22,44,32,0.9) 0%, rgba(14,29,22,0.95) 50%, rgba(8,19,13,0.95) 100%)' }}>
                   {/* Panel grid lines */}
                   <div className="absolute inset-0" style={{
                     backgroundImage: "linear-gradient(rgba(79,209,197,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(79,209,197,0.06) 1px, transparent 1px)",
@@ -312,7 +315,7 @@ export default function HeroSection() {
                     <text x="150" y="340" textAnchor="middle" fill="rgba(226,228,232,0.12)" fontSize="9" fontFamily="var(--font-chakra)" fontWeight="600" letterSpacing="0.15em">LT DISTRIBUTION PANEL</text>
 
                     {/* Voltage waveform overlay */}
-                    <path d="M40 355 Q65 335 90 355 T140 355 T190 355 T240 355" stroke="rgba(234,179,8,0.15)" strokeWidth="1" fill="none" className="animate-waveform" />
+                    <path d="M40 355 Q65 335 90 355 T140 355 T190 355 T240 355" stroke="rgba(234,179,8,0.15)" strokeWidth="1" fill="none" strokeDasharray="12 6" className="animate-waveform" />
                   </svg>
                   
                   {/* Interactive Tooltip Overlay inside Panel */}
@@ -346,13 +349,13 @@ export default function HeroSection() {
               </div>
 
               {/* Floating data tag — top right */}
-              <div className="absolute -top-3 -right-3 bg-ind-900 border border-ind-700/50 rounded-sm px-3 py-2 shadow-lg z-30" style={{ transform: `translate(${mousePos.x * 5}px, ${mousePos.y * 5}px)`, transition: "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)" }}>
+              <div className="absolute -top-3 -right-3 bg-[#0d1d14] border border-[#244834]/70 rounded-sm px-3 py-2 shadow-lg z-30" style={{ transform: `translate(${mousePos.x * 5}px, ${mousePos.y * 5}px)`, transition: "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)" }}>
                 <div className="text-haz-500 font-heading text-lg font-bold leading-none">{voltage}V</div>
                 <div className="text-ind-400 text-[10px] font-heading tracking-widest uppercase">3-Phase Supply</div>
               </div>
 
               {/* Floating data tag — bottom left */}
-              <div className="absolute -bottom-3 -left-3 bg-ind-900 border border-cir-500/20 rounded-sm px-3 py-2 shadow-lg z-30" style={{ transform: `translate(${mousePos.x * -4}px, ${mousePos.y * -4}px)`, transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}>
+              <div className="absolute -bottom-3 -left-3 bg-[#0d1d14] border border-cir-500/20 rounded-sm px-3 py-2 shadow-lg z-30" style={{ transform: `translate(${mousePos.x * -4}px, ${mousePos.y * -4}px)`, transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}>
                 <div className="text-cir-400 font-heading text-lg font-bold leading-none">50Hz</div>
                 <div className="text-ind-400 text-[10px] font-heading tracking-widest uppercase">Power Quality</div>
               </div>

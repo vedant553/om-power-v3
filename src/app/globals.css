@@ -46,49 +46,52 @@
   --animate-waveform: waveform 2.5s ease-in-out infinite;
   --animate-circuit-dash: circuitDash 20s linear infinite;
   --animate-counter-in: counterIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
 
-  @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-  @keyframes slideInLeft {
-    0% { opacity: 0; transform: translateX(-40px); }
-    100% { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes slideInRight {
-    0% { opacity: 0; transform: translateX(40px); }
-    100% { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes flicker {
-    0%, 100% { opacity: 1; }
-    4% { opacity: 0.85; }
-    6% { opacity: 1; }
-    8% { opacity: 0.7; }
-    9% { opacity: 1; }
-    50% { opacity: 1; }
-    54% { opacity: 0.9; }
-    56% { opacity: 1; }
-  }
-  @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 8px 2px rgba(234, 179, 8, 0.3); }
-    50% { box-shadow: 0 0 20px 6px rgba(234, 179, 8, 0.15); }
-  }
-  @keyframes waveform {
-    0%, 100% { d: path("M0 40 Q25 10 50 40 T100 40 T150 40 T200 40"); }
-    33% { d: path("M0 40 Q25 60 50 40 T100 40 T150 40 T200 40"); }
-    66% { d: path("M0 40 Q25 15 50 40 T100 40 T150 40 T200 40"); }
-  }
-  @keyframes circuitDash {
-    to { stroke-dashoffset: -200; }
-  }
-  @keyframes counterIn {
-    0% { opacity: 0; transform: translateY(12px) scale(0.95); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
-  }
+/* ===== GLOBAL KEYFRAMES ===== */
+/* These MUST live outside @theme so browsers emit them as real @keyframes rules */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-40px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(40px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  4%  { opacity: 0.85; }
+  6%  { opacity: 1; }
+  8%  { opacity: 0.7; }
+  9%  { opacity: 1; }
+  50% { opacity: 1; }
+  54% { opacity: 0.9; }
+  56% { opacity: 1; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(234, 179, 8, 0.3); }
+  50%       { box-shadow: 0 0 20px 6px rgba(234, 179, 8, 0.15); }
+}
+/* waveform: animates stroke-dashoffset for SVG cross-browser compat
+   (CSS `d: path()` is not supported in Chrome/Safari) */
+@keyframes waveform {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -120; }
+}
+@keyframes circuitDash {
+  to { stroke-dashoffset: -200; }
+}
+@keyframes counterIn {
+  0%   { opacity: 0; transform: translateY(12px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* ===== BASE STYLES ===== */
@@ -455,6 +458,35 @@ h1, h2, h3, h4, h5, h6 {
 
 .pulse-glow {
   animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* ===== ANIMATION UTILITY CLASSES ===== */
+/* Explicit definitions as guaranteed fallbacks alongside Tailwind v4 @theme tokens */
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+.animate-slide-in-left {
+  animation: slideInLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+.animate-waveform {
+  animation: waveform 2.5s ease-in-out infinite;
+}
+.animate-circuit-dash {
+  animation: circuitDash 20s linear infinite;
+}
+.animate-counter-in {
+  animation: counterIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
 }
 
 /* ===== NO SCROLLBAR ===== */
