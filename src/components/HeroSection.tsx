@@ -141,13 +141,7 @@ export default function HeroSection() {
 
           {/* Left column — text + CTA (7 cols) */}
           <div className="lg:col-span-7 xl:col-span-7">
-            {/* Flickering indicator dot */}
-            <div className="flex items-center gap-3 mb-4 md:mb-5 animate-fade-in">
-              <span className="w-2 h-2 rounded-full bg-haz-500 flicker-accent" aria-hidden="true" />
-              <span className="text-haz-500/80 font-heading text-xs font-semibold tracking-[0.2em] uppercase">Panvel, Navi Mumbai</span>
-              <span className="w-px h-3 bg-ind-600" aria-hidden="true" />
-              <span className="text-ind-400 font-heading text-xs font-semibold tracking-[0.2em] uppercase">GST Registered</span>
-            </div>
+
 
             {/* Headline */}
             <h1
@@ -181,10 +175,10 @@ export default function HeroSection() {
                 Request a Quote
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
-              <Link href="/contact" id="hero-call-cta" className="btn-secondary">
+              <a href="tel:+919168029393" id="hero-call-cta" className="btn-secondary">
                 <Phone className="w-4 h-4" aria-hidden="true" />
                 Call Us
-              </Link>
+              </a>
               <Link
                 href="/contact"
                 id="hero-whatsapp-cta"
