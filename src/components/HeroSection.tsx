@@ -179,14 +179,16 @@ export default function HeroSection() {
                 <Phone className="w-4 h-4" aria-hidden="true" />
                 Call Us
               </a>
-              <Link
-                href="/contact"
+              <a
+                href="https://wa.me/919168029393"
+                target="_blank"
+                rel="noopener noreferrer"
                 id="hero-whatsapp-cta"
                 className="btn-cir"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 WhatsApp
-              </Link>
+              </a>
             </div>
 
             {/* Trust signals */}
