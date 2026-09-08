@@ -74,7 +74,7 @@ export default function AboutPage() {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="accent-line" />
+              <span className="accent-line" style={{ background: "linear-gradient(90deg, #C9960C, #D69E00)" }} />
               <h2 id="story-heading" className="section-title mb-5">Our Story</h2>
               {/* TODO: Replace narrative below with real founding year and story from client */}
               <div className="space-y-4 text-ind-500 text-sm leading-relaxed">
@@ -238,7 +238,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Service Areas */}
             <div>
-              <span className="accent-line" />
+              <span className="accent-line" style={{ background: "linear-gradient(90deg, #C9960C, #D69E00)" }} />
               <h2 id="areas-certs-heading" className="font-heading text-2xl font-bold text-[#0A1628] mb-4">
                 Service Area
               </h2>
