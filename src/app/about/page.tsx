@@ -58,11 +58,11 @@ export default function AboutPage() {
             <ChevronRight className="w-4 h-4" aria-hidden="true" />
             <span className="text-[#F59E0B]">About Us</span>
           </nav>
-          
+
           <h1 id="about-hero-heading" className="font-heading text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3">
             About Om Power Consultant and Engineers
           </h1>
-          
+
           <p className="text-ind-300 text-sm md:text-base max-w-4xl leading-relaxed">
             A Panvel-based electrical engineering firm — building panels and auditing electrical systems for industries and commercial facilities across Navi Mumbai for over a decade.
           </p>
@@ -189,10 +189,43 @@ export default function AboutPage() {
               </div>
               <div className="p-6">
                 <h3 className="font-heading text-xl font-bold text-ind-950">Shyam Parange</h3>
-                <p className="text-cir-500 text-sm font-semibold mb-3">Founder &amp; Principal Engineer</p>
-                <p className="text-ind-500 text-sm leading-relaxed">
+                <p className="text-cir-500 text-sm font-semibold mb-3">Chartered Electrical Safety Engineer, Indian Institute of Engineers (Govt. of Maharashtra)</p>
+                <p className="text-ind-500 text-sm leading-relaxed mb-4">
                   Electrical engineer with deep expertise in panel manufacturing and energy auditing across the Mumbai industrial belt.
                 </p>
+                {/* Professional Certifications */}
+                <div className="flex items-center gap-2 pt-4 border-t border-ind-100">
+                  <div className="h-8 w-auto" title="Institution of Engineers (India)">
+                    <Image
+                      src="/logos/Institution_of_Engineers_(India)_Logo.svg.png"
+                      alt="Institution of Engineers (India)"
+                      width={32}
+                      height={32}
+                      className="object-contain"
+                      style={{ width: 'auto', height: '45px' }}
+                    />
+                  </div>
+                  <div className="h-8 w-auto" title="Bureau of Energy Efficiency (BEE)">
+                    <Image
+                      src="/logos/Beuru of Energy efficiency logo.png"
+                      alt="Bureau of Energy Efficiency (BEE)"
+                      width={32}
+                      height={32}
+                      className="object-contain"
+                      style={{ width: 'auto', height: '45px' }}
+                    />
+                  </div>
+                  <div className="h-8 w-auto" title="Chief Electrical Inspector Maharashtra">
+                    <Image
+                      src="/logos/chief electrical inspector maharashtra logo.png"
+                      alt="Chief Electrical Inspector Maharashtra"
+                      width={32}
+                      height={32}
+                      className="object-contain"
+                      style={{ width: 'auto', height: '45px' }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
