@@ -15,17 +15,27 @@ export default function HeroSection() {
     const el = heroRef.current;
     if (!el) return;
 
+    let animationFrameId: number;
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const bg = el.querySelector<HTMLElement>(".hero-visual");
-      if (bg) bg.style.transform = `translateY(${scrollY * 0.15}px)`;
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const bg = el.querySelector<HTMLElement>(".hero-visual");
+        if (bg) bg.style.transform = `translateY(${scrollY * 0.15}px)`;
+      });
     };
 
+    let isThrottled = false;
     const handleMouse = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-      setMousePos({ x, y });
+      if (isThrottled) return;
+      isThrottled = true;
+      requestAnimationFrame(() => {
+        const rect = el.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+        setMousePos({ x, y });
+        setTimeout(() => { isThrottled = false; }, 32); // Throttle to ~30fps
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -53,6 +63,7 @@ export default function HeroSection() {
       window.removeEventListener("scroll", handleScroll);
       el.removeEventListener("mousemove", handleMouse);
       clearInterval(dataInterval);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
